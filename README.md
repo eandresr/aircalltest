@@ -7,11 +7,16 @@ This is the way I work, there are many other ways but this is the best way I use
 reducing copy/paste human problems and reducing time debugging/copying between environments when a iteration with the code is made)
 
 
-IMPORTANT:
+# IMPORTANT:
 -----------
 As we mantain only one folder, we MUST delete the .terraform every time we init the template, for secure. If any problem occurs we could overwrite the tfstate file.
 Regarding the previous, it is worth recommended to enable versioning on the bucket, to prevent unsolveable problems.
 
+# TERRAFORM
+---------------
+The terraform structure is a standard, but the following may help:
+    - Code with resources is under the <code> folder
+    - Variables has the same structure but inside the <env> folder, but inside every resource only must reside the variables, for the caode and for the backend (both), and as we       can use several variable files at the same time, we can split the resource variables inside as many files as we want.
 
 DEPLOYMENT ORDER
 ----------------------
@@ -44,7 +49,7 @@ Before anything it is necceesary to do a init, but with this approach we need to
 
     usr@localhost:/opt/repos/aircalltest/code/cicd/codecommit$ terraform init -backend-config=../../../env/dev/cicd/codecommit/backend.tfvars
 
-as we can see aboce our current path is /opt/repos/aircalltest/code/cicd/codecommit, regarding the project: <code/cicd/codecommit>, so the relative path of the variables should have <../../../env>
+as we can see above our current path is /opt/repos/aircalltest/code/cicd/codecommit, regarding the project: <code/cicd/codecommit>, so the relative path of the variables should have <../../../env>
 
 PLAN/APPLY
 ------------------
