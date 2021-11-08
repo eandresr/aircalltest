@@ -1,5 +1,5 @@
 # DYAGRAM
-![Alt text](test_dyagram.png?raw=true "Title")
+![Alt text](test_dyagram.png?raw=true "Dyagram")
 # README
 The code is structured with the needed adaption for CI/CD, with separate unic folder for the code and other folder for every environment you want.
 This way we have always the same infrastructure code for every environment, the only things that will change are the variables values and backend values.
