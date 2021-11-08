@@ -22,7 +22,7 @@ resource "aws_api_gateway_authorizer" "this" {
   name          = "CognitoUserPoolAuthorizer"
   type          = "COGNITO_USER_POOLS"
   rest_api_id   = data.terraform_remote_state.apigw[0].outputs.id
-  provider_arns = ["arn:aws:cognito-idp:${local.region}:${data.aws_caller_identity.current.account_id}:userpool/${data.terraform_remote_state.cognito[0].outputs.CognitoUserPoolId}"]  #arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}
+  provider_arns = ["arn:aws:cognito-idp:${local.region}:${data.aws_caller_identity.current.account_id}:userpool/${data.terraform_remote_state.cognito[0].outputs.CognitoUserPoolId}"] #arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}
 }
 resource "aws_api_gateway_method" "apigwupload" {
   authorization = "COGNITO_USER_POOLS"
