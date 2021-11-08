@@ -15,7 +15,7 @@ Regarding the previous, it is worth recommended to enable versioning on the buck
 # TERRAFORM
 ---------------
 The terraform structure is a standard, but the following may help:
-    1. - Code with resources is under the <code> folder
+    1. - Code with resources is under the "code" folder
     2. - Variables has the same structure but inside the <env> folder, but inside every resource only must reside the variables, for the caode and for the backend (both), and as we       can use several variable files at the same time, we can split the resource variables inside as many files as we want.
 
 DEPLOYMENT ORDER
