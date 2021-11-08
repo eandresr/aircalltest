@@ -1,0 +1,47 @@
+<html>
+<head>
+<script>
+var url = window.location.href;
+var xhttp = new XMLHttpRequest();
+if (url.indexOf("access_token") >= 0){
+	try{
+		var token = url.split("#")[1].split("&")[0].split("=")[1];
+		if (token != ""){
+			document.cookie = "sstk=" + token;
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.cookie = "sstk=" + token + "; username=" + xhttp.responseText["username"];
+					alert("Now you are authenticated");
+					window.location.href = 'user.html';
+				}else{
+					if (this.readyState == 4 && this.status > 204){
+						document.cookie = "";
+						alert("Try to login again");
+						window.location.href = 'index.html';
+					}
+					console.log("Not authenticated yet Code: " + this.status + " and readyState: " + this.readyState);
+				}
+			};
+			
+			xhttp.open("GET", "https://${CloudFrontDomain}/new/chkusername", true);
+			xhttp.setRequestHeader("Authorization", "Bearer " + token);
+			xhttp.setRequestHeader("Accept", "application/json");
+			xhttp.setRequestHeader("origin", "https://${CloudFrontDomain}");
+			xhttp.send();
+		}else{
+			alert("Problems logging in, clear cache and try again!");
+		}
+	}catch (error){
+		var token = "";
+		alert(error);
+	}
+}else{
+	alert("Problems logging in, clear cache and try again!");
+	document.cookie = "";
+	window.location.href = 'index.html';
+	
+}
+
+</script>
+</head>
+</html>

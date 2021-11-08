@@ -1,0 +1,102 @@
+<html>
+<head>
+<style>
+body{
+	background-color: lightslategray;
+}
+.btn {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid red;
+  border-radius: 0.6em;
+  color: red;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+.btn.focus{
+  color: #fff;
+    outline: 0;
+}
+
+.fourth {
+  background: yellowgreen !important;
+  border-color: yellow;
+  color: #fff;
+
+  transition: background 300ms ease-in-out;
+  
+  
+}
+
+.fourth:hover {
+  background: darkorange !important;
+  border-color: yellow;
+  color: #fff;
+
+  transition: background 300ms ease-in-out;
+
+  }
+</style>
+
+</head>
+<body>
+<div><center><div id="btn"></div></center></div>
+</body>
+<script>
+var xhttp = new XMLHttpRequest();
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+function uploadphotos(){
+	window.location.href = 'user.html';
+}
+function login(){
+	window.location.href = '${Domain}/login?client_id=${ClientID}&response_type=token&scope=aws.cognito.signin.user.admin&redirect_uri=https://${CloudFrontDomain}/callback.html';
+}
+var chkcookie = getCookie("sstk");
+if (chkcookie != ""){
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.cookie = "sstk=" + chkcookie + "username=" + xhttp.responseText["username"];
+			document.getElementById("btn").innerHTML = "<button class=\"btn fourth\" onclick=\"uploadphotos()\">UPLOAD PHOTOS</button>";
+		}else{
+			document.getElementById("btn").innerHTML = "<button class=\"btn fourth\" onclick=\"login()\" >LOGIN</button>";
+		}
+	};
+	
+	xhttp.open("GET", "https://${CloudFrontDomain}/chkusername", true);
+	xhttp.setRequestHeader("Authorization", "Bearer " + chkcookie);
+	xhttp.setRequestHeader("Accept", "application/json");
+	xhttp.send();
+}else{
+	document.getElementById("btn").innerHTML = "<button class=\"btn fourth\" onclick=\"uploadphotos()\">UPLOAD PHOTOS</button><br/><button class=\"btn fourth\" onclick=\"login()\" >LOGIN</button>";
+}
+
+
+
+</script>
+</html>

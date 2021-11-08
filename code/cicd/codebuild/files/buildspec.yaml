@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+       - yum install nodejs npm --enablerepo=epel -y
+
+  build:
+    commands:
+      - npm install
+  post_build:
+    commands:
+       - echo "First step is to ZIP the package"
+       - zip -r lambda_handler.zip . **
+       - ls -lrta
+       - wget "https://a0.awsstatic.com/libra-css/images/logos/aws_smile-header-desktop-en-white_59x35.png"
+       - echo "Second step is to update Lambda, in a well developed Service we have two API GTW and Lambdas, and the next step would be to deploy to the fake one and test, and if everything was OK test to upload a picture, deploy to the real. But this is just a test for this interview with Aircall..."
+       - aws lambda update-function-code --function-name  "${Function}" --zip-file fileb://lambda_handler.zip
+       - echo ""
