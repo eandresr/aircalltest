@@ -19,21 +19,21 @@ This is a not complex architecture, but with several components, and those compo
 for time saving waiting dependancies errors. The order is the following:
 
 
-1. - S3/images
-2. - S3/build
-3. - S3/front
-4. - Cognito User Pool
-5. - WAF
-6. - CodeCommit
-7. - Lambda
-8. - APIGateway --> API
-9 - ApiGateway --> Components
-10 - ApiGateway --> Components (auth)
-11 - Cognito Client
-12 - CloudFront
-13 - CodeBuild
-14 - CodeDeploy
-15 - CodePipeline
+1. S3/images
+2. S3/build
+3. S3/front
+4. Cognito User Pool
+5. WAF
+6. CodeCommit
+7. Lambda
+8. APIGateway --> API
+9. ApiGateway --> Components
+10. ApiGateway --> Components (auth)
+11. Cognito Client
+12. CloudFront
+13. CodeBuild
+14. CodeDeploy
+15. CodePipeline
 
 
 
