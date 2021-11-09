@@ -9,18 +9,18 @@ reducing copy/paste human problems and reducing time debugging/copying between e
 
 # IMPORTANT:
 -----------
-As we mantain only one folder, we MUST delete the .terraform every time we init the template, for secure. If any problem occurs we could overwrite the tfstate file.
+As we mantain only one folder, we MUST delete the ".terraform" every time we init the template, for secure. If any problem occurs we could overwrite the tfstate file.
 Regarding the previous, it is worth recommended to enable versioning on the bucket, to prevent unsolveable problems.
 
 # TERRAFORM
 ---------------
 The terraform structure is a standard, but the following may help:
 * Code with resources is under the "code" folder
-* Variables has the same structure but inside the <env> folder, but inside every resource only must reside the variables, for the caode and for the backend (both), and as we       can use several variable files at the same time, we can split the resource variables inside as many files as we want.
+* Variables has the same structure but inside the <env> folder, but inside every resource only must reside the variables, for the caode and for the backend (both), and as we       can use several variable files at the same time, we can split the resource variables inside into as many files as we want.
 
 DEPLOYMENT ORDER
 ----------------------
-This is a not complex architecture, but with several components, and those components have interdependancies between them, so the order of deployment it is critical 
+This is a not complex architecture, but with several components, and those components have interdependancies between them, so the order of deployment is critical 
 for time saving waiting dependancies errors. The order is the following:
 
 
